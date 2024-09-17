@@ -1,0 +1,26 @@
+on:
+  pull_request:
+    branches:
+      - main
+jobs:
+  build:
+    name: ci / test (push)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.x"
+
+      - name: Check .NET Version  
+        run: |
+          cd api
+          dotnet --version
+
+      - name: Run use cases tests
+        run: |
+          cd api
+          dotnet test

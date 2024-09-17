@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="Bogus" Version="35.6.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\library.Application\library.Application.csproj" />
+    <ProjectReference Include="..\..\src\library.Communication\library.Communication.csproj" />
+    <ProjectReference Include="..\..\src\library.Domain\library.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

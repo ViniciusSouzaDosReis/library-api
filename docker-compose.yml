@@ -1,0 +1,35 @@
+version: '3.4'
+
+services:
+  database:
+    image: mysql:8.0
+    ports:
+      - "3307:3306"
+    expose:
+      - 3307
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: LIBRARYDB
+
+  myapp:
+    build: ./api
+    depends_on:
+      - database
+    stdin_open: true
+    tty: true
+    entrypoint: /bin/bash
+    ports:
+      - "8000:8000"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ConnectionStrings__Connection=${DB_CONNECTION_STRING}
+      - AWS__Profile=${AWS_PROFILE}
+      - AWS__Region=${AWS_REGION}
+      - AWS__AccessKey=${AWS_ACCESS_KEY}
+      - AWS__SecretKey=${AWS_SECRET_KEY}
+      - AWS__S3BucketName=${AWS_S3_BUCKET_NAME}
+      - AWS__S3BucketKey=${AWS_S3_BUCKET_KEY}
+      - Jwt__Secret=${JWT_SECRET}
+      - Jwt__ExpirationInMinutes=${JWT_EXPIRATION_IN_MINUTES}
+    command: -c "echo && rm -rf /api/src/library.Infrastructure/Migrations && dotnet ef migrations add InitialCreate --project /api/src/library.Infrastructure/library.Infrastructure.csproj || true && dotnet ef database update --project /api/src/library.Infrastructure/library.Infrastructure.csproj || true && cd /api/src/library.Api/ && dotnet publish -c Release -o /app/publish && dotnet /app/publish/library.Api.dll"

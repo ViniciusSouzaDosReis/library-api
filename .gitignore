@@ -1,0 +1,52 @@
+# Ignore Visual Studio temporary files, build results, and
+# build logs.
+**/[Bb]in/
+**/[Oo]bj/
+**/[Ll]og/
+**/*.user
+**/*.rsuser
+**/*.suo
+**/*.dotCover
+**/*.ncrunch*
+**/*.vscode/*
+**/*.vspscc
+**/*.vspxproj
+**/*.pdb
+**/*.cache/
+**/*.csproj.user
+**/.vs/
+**/TestResults/
+
+# Ignore NuGet packages folder and lock file
+**/packages/
+*.nupkg
+project.lock.json
+project.fragment.lock.json
+
+# Ignore other NuGet related files
+.nuget/
+*.snupkg
+
+# Ignore the ASP.NET Scaffolding folder
+.scaffolding/
+
+# Ignore Rider, JetBrains, and other IDE files
+.idea/
+*.sln.iml
+
+# Ignore generated files from dotnet build and run
+**/artifacts/
+**/publish/
+**/App_Data/
+
+# Ignore Entity Framework migrations scripts
+Migrations/
+
+# Ignore configuration files
+appsettings.Development.json
+appsettings.Staging.json
+appsettings.Production.json
+
+# Ignore other development environment files
+.vscode/
+.env
